@@ -11,3 +11,6 @@ RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         && docker-php-ext-configure gd --with-freetype-dir --with-webp-dir --with-jpeg-dir --with-png-dir \
         && docker-php-ext-install -j$(nproc) bz2 mysqli pdo_mysql sockets zip gd
+
+RUN pecl install redis \
+    && docker-php-ext-enable redis
