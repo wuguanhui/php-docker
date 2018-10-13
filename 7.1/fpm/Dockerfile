@@ -14,3 +14,6 @@ RUN apt-get update && apt-get install -y \
 
 RUN pecl install redis \
     && docker-php-ext-enable redis
+
+RUN pecl install protobuf \
+    && docker-php-ext-enable protobuf
