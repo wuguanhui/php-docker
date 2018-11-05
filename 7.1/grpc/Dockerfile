@@ -34,7 +34,8 @@ RUN wget https://phar.phpunit.de/phpunit-old.phar \
     && chmod +x phpunit-old.phar \
     && mv phpunit-old.phar /usr/bin/phpunit    
 
-RUN git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc \
+RUN cd / \
+    && git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc \
     && cd grpc \
     && git submodule update --init \
     && cd third_party/protobuf \
