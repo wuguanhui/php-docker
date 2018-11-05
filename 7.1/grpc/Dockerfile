@@ -21,9 +21,22 @@ RUN pecl install protobuf \
 RUN pecl install grpc \
     && docker-php-ext-enable grpc
 
-RUN apt-get update && apt-get install -y git
+RUN apt-get update && apt-get install -y git \
+        libtool \
+        autoconf --fix-missing \
+        automake 
+
+RUN curl -sS https://getcomposer.org/installer | php \
+    &&mv composer.phar /usr/local/bin/composer
+
+RUN wget https://phar.phpunit.de/phpunit-old.phar \
+    && chmod +x phpunit-old.phar \
+    && mv phpunit-old.phar /usr/bin/phpunit    
 
 RUN git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc \
     && cd grpc \
     && git submodule update --init \
+    && cd third_party/protobuf \
+    && ./autogen.sh \
+    && cd ../../ \
     && make grpc_php_plugin
