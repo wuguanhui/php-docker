@@ -22,6 +22,7 @@ RUN pecl install grpc \
     && docker-php-ext-enable grpc
 
 RUN apt-get update && apt-get install -y git \
+        wget \
         libtool \
         autoconf --fix-missing \
         automake 
@@ -38,5 +39,7 @@ RUN git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc
     && git submodule update --init \
     && cd third_party/protobuf \
     && ./autogen.sh \
+    && ./configure \
+    && make install \
     && cd ../../ \
     && make grpc_php_plugin
