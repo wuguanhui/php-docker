@@ -1,4 +1,4 @@
-FROM php:7.1.19-cli
+FROM php:7.1.19-fpm
 RUN apt-get update && apt-get install -y \
     	libbz2-dev \
 	zlib1g-dev \
