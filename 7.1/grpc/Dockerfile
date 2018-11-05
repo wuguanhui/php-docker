@@ -43,9 +43,8 @@ RUN git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc
     && make install \
     && cd ../../ \
     && make grpc_php_plugin \
-    && cd /
-
-RUN cp /grpc/bins/opt/grpc_php_plugin /usr/bin/grpc_php_plugin \
+    && cd / \
+    && cp /grpc/bins/opt/grpc_php_plugin /usr/bin/grpc_php_plugin \
     && chmod +x /usr/bin/grpc_php_plugin \
     && rm -rf /grpc
 
