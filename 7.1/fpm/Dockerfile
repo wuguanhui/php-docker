@@ -17,3 +17,6 @@ RUN pecl install redis \
 
 RUN pecl install protobuf \
     && docker-php-ext-enable protobuf
+
+RUN pecl install grpc \
+    && docker-php-ext-enable grpc

@@ -18,6 +18,9 @@ RUN pecl install redis \
 RUN pecl install protobuf \
     && docker-php-ext-enable protobuf
 
+RUN pecl install grpc \
+    && docker-php-ext-enable grpc
+
 RUN apt-get update && apt-get install -y git
 
 RUN git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc \
