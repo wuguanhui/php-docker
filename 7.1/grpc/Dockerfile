@@ -28,7 +28,7 @@ RUN apt-get update && apt-get install -y git \
         automake 
 
 RUN curl -sS https://getcomposer.org/installer | php \
-    &&mv composer.phar /usr/local/bin/composer
+    && mv composer.phar /usr/local/bin/composer
 
 RUN wget https://phar.phpunit.de/phpunit-old.phar \
     && chmod +x phpunit-old.phar \
@@ -42,4 +42,11 @@ RUN git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc
     && ./configure \
     && make install \
     && cd ../../ \
-    && make grpc_php_plugin
+    && make grpc_php_plugin \
+    && cd /
+
+RUN cp /grpc/bins/opt/grpc_php_plugin /usr/bin/grpc_php_plugin \
+    chmod +x /usr/bin/grpc_php_plugin \
+    rm -rf grpc
+
+ENV LD_LIBRARY_PATH=/usr/local/lib/
