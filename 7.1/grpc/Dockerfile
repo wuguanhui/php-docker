@@ -46,7 +46,7 @@ RUN git clone -b $(curl -L https://grpc.io/release) https://github.com/grpc/grpc
     && cd /
 
 RUN cp /grpc/bins/opt/grpc_php_plugin /usr/bin/grpc_php_plugin \
-    chmod +x /usr/bin/grpc_php_plugin \
-    rm -rf grpc
+    && chmod +x /usr/bin/grpc_php_plugin \
+    && rm -rf /grpc
 
 ENV LD_LIBRARY_PATH=/usr/local/lib/
